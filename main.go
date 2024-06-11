@@ -52,9 +52,9 @@ func main() {
 		id := c.Params("id")
 
 		for i, todo := range todos {
-			if todo.ID == id {
+			if fmt.Sprint(todo.ID) == id {
 				todos[i].Completed = true
-				return c.Status()
+				return c.Status(200).JSON(todos[i])
 			}
 		}
 	})
