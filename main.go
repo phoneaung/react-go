@@ -47,6 +47,18 @@ func main() {
 		return c.Status(201).JSON(todo)
 	})
 
+	// update a todo
+	app.Patch("/api/todos/:id", func(c *fiber.Ctx) error {
+		id := c.Params("id")
+
+		for i, todo := range todos {
+			if todo.ID == id {
+				todos[i].Completed = true
+				return c.Status()
+			}
+		}
+	})
+
 	// listening to port # boilerplate
 	log.Fatal(app.Listen(":4000"))
 }
