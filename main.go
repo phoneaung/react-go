@@ -57,6 +57,8 @@ func main() {
 				return c.Status(200).JSON(todos[i])
 			}
 		}
+
+		return c.Status(400).JSON(fiber.Map{"error": "Todo Not found"})
 	})
 
 	// listening to port # boilerplate
