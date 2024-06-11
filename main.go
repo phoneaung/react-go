@@ -27,6 +27,7 @@ func main() {
 		return c.Status(200).JSON(fiber.Map{"msg": "HelloWorld!"})
 	})
 
+	// create a todo
 	app.Post("/api/todos", func(c *fiber.Ctx) error {
 		todo := &Todo{} // create a todo with default Todo struct values id=0, completed=false, Body=""
 
@@ -34,10 +35,12 @@ func main() {
 			return err
 		}
 
+		// if the user does not type anything in body, return an error
 		if todo.Body == "" {
 			return c.Status(400).JSON(fiber.Map{"msg": "error: todo body is required!"})
 		}
 
+		// increment id numbers
 		todo.ID = len(todos) + 1
 		todos = append(todos, *todo)
 
