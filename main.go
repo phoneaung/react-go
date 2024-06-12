@@ -72,6 +72,8 @@ func main() {
 				// [i:] up until the end
 				// ... periodic operator which unpacks the values
 				todos = append(todos[:i], todos[i+1:]...)
+
+				return c.Status(200).JSON(fiber.Map{"success": "true"})
 			}
 		}
 
