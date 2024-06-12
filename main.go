@@ -51,6 +51,7 @@ func main() {
 		id := c.Params("id")
 
 		for i, todo := range todos {
+			// id is string and todo.ID is int. to compare them, use fmt.Sprint()
 			if fmt.Sprint(todo.ID) == id {
 				todos[i].Completed = true
 				return c.Status(200).JSON(todos[i])
@@ -64,6 +65,12 @@ func main() {
 	app.Delete("/api/todos/:id/delete", func(c *fiber.Ctx) error {
 		id := c.Params("id")
 
+		for i, todo := range todos {
+			// id is string and todo.ID is int. to compare them, use fmt.Sprint()
+			if fmt.Sprint(todo).ID == id {
+
+			}
+		}
 	})
 
 	// listening to port # boilerplate
