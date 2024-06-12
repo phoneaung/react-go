@@ -58,7 +58,7 @@ func main() {
 			}
 		}
 
-		return c.Status(400).JSON(fiber.Map{"error": "Todo Not found"})
+		return c.Status(400).JSON(fiber.Map{"error": "Todo not found!"})
 	})
 
 	// delete a todo
@@ -67,10 +67,15 @@ func main() {
 
 		for i, todo := range todos {
 			// id is string and todo.ID is int. to compare them, use fmt.Sprint()
-			if fmt.Sprint(todo).ID == id {
-
+			if fmt.Sprint(todo.ID) == id {
+				// [:i] up until not including
+				// [i:] up until the end
+				// ... periodic operator which unpacks the values
+				todos = append(todos[:i], todos[i+1:]...)
 			}
 		}
+
+		return c.Status(400).JSON(fiber.Map{"error": "Todo not found!"})
 	})
 
 	// listening to port # boilerplate
