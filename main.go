@@ -19,6 +19,10 @@ func main() {
 	// application # boilerplate
 	app := fiber.New()
 
+	// load .env
+	// if there is an error catch it
+	// Set a PORT
+
 	todos := []Todo{}
 
 	// handler function # boilerplate
