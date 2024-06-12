@@ -22,12 +22,12 @@ func main() {
 	todos := []Todo{}
 
 	// handler function # boilerplate
-	app.Get("/", func(c *fiber.Ctx) error {
+	app.Get("/api/todos", func(c *fiber.Ctx) error {
 		return c.Status(200).JSON(todos)
 	})
 
 	// create a todo
-	app.Post("/api/todos", func(c *fiber.Ctx) error {
+	app.Post("/api/todos/create", func(c *fiber.Ctx) error {
 		todo := &Todo{} // create a todo with default Todo struct values id=0, completed=false, Body=""
 
 		if err := c.BodyParser(todo); err != nil {
