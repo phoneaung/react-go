@@ -61,6 +61,10 @@ func main() {
 	})
 
 	// delete a todo
+	app.Delete("/api/todos/:id/delete", func(c *fiber.Ctx) error {
+		id := c.Params("id")
+
+	})
 
 	// listening to port # boilerplate
 	log.Fatal(app.Listen(":4000"))
