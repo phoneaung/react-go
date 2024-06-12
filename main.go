@@ -16,7 +16,6 @@ type Todo struct {
 }
 
 func main() {
-	fmt.Println("Hello World!")
 	// application # boilerplate
 	app := fiber.New()
 
@@ -24,7 +23,7 @@ func main() {
 
 	// handler function # boilerplate
 	app.Get("/", func(c *fiber.Ctx) error {
-		return c.Status(200).JSON(fiber.Map{"msg": "HelloWorld!"})
+		return c.Status(200).JSON(todos)
 	})
 
 	// create a todo
@@ -60,6 +59,8 @@ func main() {
 
 		return c.Status(400).JSON(fiber.Map{"error": "Todo Not found"})
 	})
+
+	// delete a todo
 
 	// listening to port # boilerplate
 	log.Fatal(app.Listen(":4000"))
