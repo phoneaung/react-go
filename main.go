@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/joho/godotenv"
 )
 
 // custom kinda like datastructure
@@ -20,6 +21,11 @@ func main() {
 	app := fiber.New()
 
 	// load .env
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		log.Fatal("Error loading .env file!")
+	}
 	// if there is an error catch it
 	// Set a PORT
 
