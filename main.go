@@ -27,7 +27,7 @@ func main() {
 	})
 
 	// create a todo
-	app.Post("/api/todos/create", func(c *fiber.Ctx) error {
+	app.Post("/api/todos", func(c *fiber.Ctx) error {
 		todo := &Todo{} // create a todo with default Todo struct values id=0, completed=false, Body=""
 
 		if err := c.BodyParser(todo); err != nil {
