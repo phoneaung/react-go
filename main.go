@@ -62,7 +62,7 @@ func main() {
 	})
 
 	// delete a todo
-	app.Delete("/api/todos/:id/delete", func(c *fiber.Ctx) error {
+	app.Delete("/api/todos/:id", func(c *fiber.Ctx) error {
 		id := c.Params("id")
 
 		for i, todo := range todos {
