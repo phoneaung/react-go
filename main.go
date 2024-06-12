@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
@@ -26,8 +27,9 @@ func main() {
 	if err != nil {
 		log.Fatal("Error loading .env file!")
 	}
-	// if there is an error catch it
+
 	// Set a PORT
+	PORT := os.Getenv("PORT")
 
 	todos := []Todo{}
 
@@ -91,5 +93,5 @@ func main() {
 	})
 
 	// listening to port # boilerplate
-	log.Fatal(app.Listen(":4000"))
+	log.Fatal(app.Listen(":" + PORT))
 }
