@@ -78,13 +78,15 @@ func getTodos(c *fiber.Ctx) error {
 	// no filter, get them all todos from mongodb
 	cursor, err := collection.Find(context.Background(), bson.M{})
 
+	// iterate through the cursor to decode each todo item
 	for cursor.Next(context.Background()) {
 		var todo Todo
 		if err := cursor.Decode(&todo); err != nil {
-			return err
+			return err // return an error if decoding fails
 		}
+		// append each decoded todo
 		todos = append(todos, todo)
 	}
-
+	// return the todos slice as json format
 	return c.JSON(todos)
 }
