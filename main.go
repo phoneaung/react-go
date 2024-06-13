@@ -8,6 +8,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -72,5 +73,18 @@ func main() {
 
 // get all todos
 func getTodos(c *fiber.Ctx) error {
+	var todos []Todo
 
+	// no filter, get them all todos from mongodb
+	cursor, err := collection.Find(context.Background(), bson.M{})
+
+	for cursor.Next(context.Background()) {
+		var todo Todo
+		if err := cursor.Decode(&todo); err != nil {
+			return err
+		}
+		todos = append(todos, todo)
+	}
+
+	return c.JSON(todos)
 }
