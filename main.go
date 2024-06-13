@@ -42,6 +42,8 @@ func main() {
 		log.Fatal(err)
 	}
 
+	defer client.Disconnect(context.Background())
+
 	err = client.Ping(context.Background(), nil)
 	if err != nil {
 		log.Fatal(err)
@@ -54,9 +56,9 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/api/todos", getTodos)
-	app.Post("/api/todos/:id", createTodos)
-	app.Patch("/api/todos/:id", updateTodos)
-	app.Delete("/api/todos:id", deleteTodos)
+	// app.Post("/api/todos/:id", createTodo)
+	// app.Patch("/api/todos/:id", updateTodo)
+	// app.Delete("/api/todos:id", deleteTodo)
 
 	// listen to port
 	port := os.Getenv("PORT")
@@ -66,5 +68,9 @@ func main() {
 	}
 
 	log.Fatal(app.Listen("0.0.0.0" + port))
+}
+
+// get all todos
+func getTodos(c *fiber.Ctx) error {
 
 }
