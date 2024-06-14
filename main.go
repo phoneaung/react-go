@@ -43,6 +43,7 @@ func main() {
 		log.Fatal(err)
 	}
 
+	// when main is done executing, we will disconnect from the database
 	defer client.Disconnect(context.Background())
 
 	err = client.Ping(context.Background(), nil)
@@ -77,6 +78,13 @@ func getTodos(c *fiber.Ctx) error {
 
 	// no filter, get them all todos from mongodb
 	cursor, err := collection.Find(context.Background(), bson.M{})
+
+	if err != nil {
+		return err
+	}
+
+	// defer is cure to use postpone function until the surroundings end or completed
+	defer cursor.Close(context.Background())
 
 	// iterate through the cursor to decode each todo item
 	for cursor.Next(context.Background()) {
