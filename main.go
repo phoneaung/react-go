@@ -60,10 +60,10 @@ func main() {
 
 	app := fiber.New()
 
-	app.Get("/api/todos", getTodos)
+	app.Get("/api/todos/", getTodos)
 	app.Post("/api/todos/", createTodo)
 	app.Patch("/api/todos/:id", updateTodo)
-	app.Delete("/api/todos:id", deleteTodo)
+	app.Delete("/api/todos/:id", deleteTodo)
 
 	// listen to port
 	port := os.Getenv("PORT")
