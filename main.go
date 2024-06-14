@@ -137,7 +137,7 @@ func updateTodo(c *fiber.Ctx) error {
 	}
 
 	filter := bson.M{"_id": objectID}
-	update := bson.M{"$set": bson.M{"completed": "true"}}
+	update := bson.M{"$set": bson.M{"completed": true}}
 
 	_, err = collection.UpdateOne(context.Background(), filter, update)
 
