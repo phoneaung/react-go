@@ -69,7 +69,7 @@ func main() {
 		port = "8000"
 	}
 
-	log.Fatal(app.Listen("0.0.0.0" + port))
+	log.Fatal(app.Listen("0.0.0.0:" + port))
 }
 
 // get all todos
