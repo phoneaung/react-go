@@ -61,7 +61,7 @@ func main() {
 	app := fiber.New()
 
 	app.Get("/api/todos", getTodos)
-	app.Post("/api/todos/:id", createTodo)
+	app.Post("/api/todos/", createTodo)
 	// app.Patch("/api/todos/:id", updateTodo)
 	// app.Delete("/api/todos:id", deleteTodo)
 
@@ -122,7 +122,7 @@ func createTodo(c *fiber.Ctx) error {
 	}
 
 	// Object ID
-	todo.ID := insertResult.InsertedID.(primitive.ObjectID)
+	todo.ID = insertResult.InsertedID.(primitive.ObjectID)
 
 	return c.Status(201).JSON(todo)
 }
