@@ -3,7 +3,7 @@ import { useState } from "react";
 import TodoItem from "./TodoItem";
 
 const TodoList = () => {
-	const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(false);
 	const todos = [
 		{
 			_id: 1,
@@ -28,7 +28,10 @@ const TodoList = () => {
 	];
 	return (
 		<>
-			<Text fontSize={"4xl"} textTransform={"uppercase"} fontWeight={"bold"} textAlign={"center"} my={2}>
+			<Text fontSize={"4xl"} textTransform={"uppercase"} fontWeight={"bold"} textAlign={"center"} my={2} 
+            bgGradient='linear(to-l, #0b85f8, #00ffff)'
+            bgClip='text'    
+            >
 				Today's Tasks
 			</Text>
 			{isLoading && (
