@@ -21,7 +21,7 @@ const TodoForm = () => {
 				/>
 				<Button
 					mx={2}
-					type='submit'
+					type='submit'   
 					_active={{
 						transform: "scale(.97)",
 					}}
