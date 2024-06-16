@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 export type Todo = {
     _id: number;
     body: string;
-    complated: boolean;
+    completed: boolean;
 }
 const TodoList = () => {
 	const { data: todos, isLoading } = useQuery<Todo[]>({
