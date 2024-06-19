@@ -19,7 +19,7 @@ import (
 // mongoDB has its own datatype so instead of int for ID, we use primitive.ObjectID which is from mongo
 // by default, ID is gonna be zero for first todo created, so we have to omit the value
 type Todo struct {
-	ID        primitive.ObjectID `json:"id,omitempty" bson:"_id,omitempty"`
+	ID        primitive.ObjectID `json:"_id,omitempty" bson:"_id,omitempty"`
 	Completed bool               `json:"completed"`
 	Body      string             `json:"body"`
 }
