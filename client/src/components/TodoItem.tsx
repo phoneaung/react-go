@@ -6,15 +6,14 @@ import { useMutation } from "@tanstack/react-query";
 import { BASE_URL } from "../App";
 
 const TodoItem = ({ todo }: { todo: Todo }) => {
-    console.log(todo);
-    const { mutate:updateTodo, isPending:isUpdating }= useMutation({
+    const { mutate: updateTodo, isPending: isUpdating } = useMutation({
         mutationKey: ["updateTodo"],
         mutationFn: async () => {
             if (todo.completed) return alert("Todo is already completed!");
             try {
-                const res = await fetch(BASE_URL + `/api/${todo._id}`, {method:"PATCH",});
-                const data = res.json();
-                if(!res.ok) {
+                const res = await fetch(BASE_URL + `/todos/${todo._id}`, {method: "PATCH",});
+                const data = await res.json();
+                if (!res.ok) {
                     throw new Error(data.error || "Something went wrong!");
                 }
                 return data;
