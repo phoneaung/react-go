@@ -1,4 +1,4 @@
-import { Badge, Box, Flex, Text } from "@chakra-ui/react";
+import { Badge, Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Todo } from "./TodoList";
@@ -55,8 +55,9 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
 				)}
 			</Flex>
 			<Flex gap={2} alignItems={"center"}>
-				<Box color={"green.500"} cursor={"pointer"} onClick={updateTodo}>
-					<FaCheckCircle size={20} />
+				<Box color={"green.500"} cursor={"pointer"} onClick={() => updateTodo()}>
+					{!isUpdating && <FaCheckCircle size={20} />}
+                    {isUpdating && <Spinner size={"sm"} />}
 				</Box>
 				<Box color={"red.500"} cursor={"pointer"}>
 					<MdDelete size={25} />
