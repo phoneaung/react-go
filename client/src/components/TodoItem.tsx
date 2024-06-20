@@ -2,10 +2,13 @@ import { Badge, Box, Flex, Spinner, Text } from "@chakra-ui/react";
 import { FaCheckCircle } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Todo } from "./TodoList";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { BASE_URL } from "../App";
 
 const TodoItem = ({ todo }: { todo: Todo }) => {
+    // update todo item
+    const queryClient = useQueryClient();
+
     const { mutate: updateTodo, isPending: isUpdating } = useMutation({
         mutationKey: ["updateTodo"],
         mutationFn: async () => {
@@ -21,6 +24,10 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
                 console.log(error)
             }
         },
+        // fetch all the todos after success
+        onSuccess: () => {
+            queryClient.invalidateQueries({queryKey: ["todos"]})
+        }
     });
 	return (
 		<Flex gap={2} alignItems={"center"}>
