@@ -1,5 +1,5 @@
 import { Button, Flex, Input, Spinner } from "@chakra-ui/react";
-import { Mutation, useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { BASE_URL } from "../App";
@@ -30,13 +30,16 @@ const TodoForm = () => {
                 // after the todo is created, i want to set the typing box to be an empty string!
                 setNewTodo("");
                 return data;
-            } catch (error) {
-                throw new Error("");
-                
+            } catch (error:any) {
+                throw new Error(error);
             }
         },
+        // after a todo has been created, refetch all todos
         onSuccess: () => {
-
+            queryClient.invalidateQueries({ queryKey: ["todos"]});
+        },
+        onError: (error:any) => {
+            alert(error.message);
         }
     });
 

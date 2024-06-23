@@ -26,7 +26,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
         },
         // fetch all the todos after success
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: ["todos"]})
+            queryClient.invalidateQueries({queryKey: ["todos"]});
         }
     });
 	return (
