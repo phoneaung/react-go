@@ -46,6 +46,7 @@ const TodoItem = ({ todo }: { todo: Todo }) => {
         },
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["todos"] });
+            console.log("onSuccess called!")
         },
     });
 
